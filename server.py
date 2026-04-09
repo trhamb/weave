@@ -13,8 +13,6 @@ def run_server(host, port):
         handle_client(client_socket, address)
 
 
-
-
 def handle_client(client_socket, address):
     print(f"Connected to {address}")
 
