@@ -9,6 +9,8 @@ def run_server(host, port):
 
     while True:
         client_socket, address = server_socket.accept()
+        handle_client(client_socket, address)
+
 
 
 
