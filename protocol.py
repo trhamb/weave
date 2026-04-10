@@ -6,12 +6,12 @@ def build_response(parsed_request):
     if is_valid:
         return {
             "status": "OK",
-            "body": "Welcome to my Space"
+            "body": result
         }
     else:
         return {
             "status": "FAILED",
-            "body": "Invalid request"
+            "body": result
         }
 
 
@@ -29,7 +29,7 @@ def parse_request(request_text):
     if parts[0] != "WEAVE/1":
         return (False, "Unsupported version")
 
-    if parts[1][0] != "/":
+    if not parts[1].startswith("/"):
         return (False, "Invalid path")
 
     return (True, parts[1])
