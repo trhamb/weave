@@ -1,22 +1,26 @@
-def build_response(request_text):
-    return "Test Response!"
+def build_response(parsed_request):
+    is_valid, result = parsed_request
+    if is_valid:
+        print(f"Valid request, accessing {result}")
+    else:
+        print("Invalid request")
 
 def parse_request(request_text):
     stripped = request_text.strip()
     if not stripped:
         return (False, "Incorrect request format")
 
-    split = stripped.split()
+    parts = stripped.split()
     
-    if len(split) > 2:
+    if len(parts) != 2:
         print(f"{stripped} - Invalid protocol: rejected")
         return (False, "Invalid request format")
 
-    if split[0] == "WEAVE/1":
+    if parts[0] == "WEAVE/1":
         print(f"{stripped} - Valid protocol: accepted")
-        if split[1][0] == '/':
+        if parts[1][0] == '/':
             print(f"{stripped} - address prefix correct")
-            return (True, split[1])
+            return (True, parts[1])
         else:
             print(f"{stripped} - Invalid address")
             return (False, "Invalid request")
@@ -24,6 +28,4 @@ def parse_request(request_text):
         print(f"{stripped} - Invalid protocol: rejected")
 
 
-parse_request("WEAVE/1 /")              # should be accepted
-parse_request("WAEVE/2 /")              # rejected
-parse_request("WEAVE/1 / about")        # rejected
+
