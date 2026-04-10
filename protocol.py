@@ -1,9 +1,9 @@
 def build_response(parsed_request):
     is_valid, result = parsed_request
     if is_valid:
-        print(f"Valid request, accessing {result}")
+        return(f"Valid request, accessing {result}")
     else:
-        print("Invalid request")
+        return("Invalid request")
 
 def parse_request(request_text):
     stripped = request_text.strip()
