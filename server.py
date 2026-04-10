@@ -3,6 +3,7 @@ from protocol import build_response, parse_request
 
 def run_server(host, port):
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     server_socket.bind((host, port))
     server_socket.listen()
 
@@ -32,6 +33,6 @@ def read_request(client_socket):
 
 
 def send_response(client_socket, response_text):
-    response = response_text.encode("utf-8")
+    response = response_text["body"].encode("utf-8")
     client_socket.sendall(response)
 

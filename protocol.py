@@ -1,9 +1,16 @@
 def build_response(parsed_request):
     is_valid, result = parsed_request
     if is_valid:
-        return(f"Valid request, accessing {result}")
+        return {
+            "status": "OK",
+            "body": "Welcome to my Space"
+        }
     else:
-        return("Invalid request")
+        return {
+            "status": "FAILED",
+            "body": "Invalid request"
+        }
+
 
 def parse_request(request_text):
     stripped = request_text.strip()
