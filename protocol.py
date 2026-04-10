@@ -36,5 +36,15 @@ def parse_request(request_text):
 
 
 def resolve_page(path):
-    pass
+    stripped_path = path.strip("/")
+    filename = stripped_path + ".txt"
+    content_root = Path('content')
+    full_path = content_root / filename
+    
+    if full_path.is_file():
+        page_contents = full_path.read_text()
+        return (True, page_contents)
+    else:
+        return (False, "Page not found")
+
 

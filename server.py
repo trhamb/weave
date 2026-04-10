@@ -20,7 +20,7 @@ def handle_client(client_socket, address):
     request_text = read_request(client_socket)
     print(f"Debugging print: {request_text}")
     parsed_request = parse_request(request_text)
-
+    
     response_text = build_response(parsed_request)
     send_response(client_socket, response_text)
     client_socket.close()
