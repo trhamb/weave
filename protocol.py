@@ -2,24 +2,26 @@ from pathlib import Path
 
 
 def build_response(parsed_request):
-    status, result = parsed_request
+    status, payload = parsed_request
+    status_line = ""
+    body = ""
+
     if status == "WOVEN":
-        return {
-                "status": status,
-                "body": result
-                }
+        status_line = status
+        body = payload
+    elif status == "MISWOVEN":
+        status_line = status
+        body = payload
+    elif status == "TANGLED":
+        status_line = status
+        body = payload
 
-    if status == "MISWOVEN":
-        return {
-                "status": status,
-                "body": result
-                }
+    response = f"{status_line}
+                \n
+                \n
+                {body}"
 
-    if status == "TANGLED":
-        return {
-                "status": status,
-                "body": result
-                }
+    return response
 
 
 def parse_request(request_text):
