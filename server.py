@@ -1,5 +1,5 @@
 import socket
-from protocol import build_response, parse_request
+from protocol import build_response, parse_request, resolve_page
 
 def run_server(host, port):
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -16,8 +16,6 @@ def run_server(host, port):
 
 def handle_client(client_socket, address):
     print(f"Connected to {address}")
-
-    response = ""
 
     request_text = read_request(client_socket)
     print(f"Debugging print: {request_text}")

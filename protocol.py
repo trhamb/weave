@@ -16,10 +16,7 @@ def build_response(parsed_request):
         status_line = status
         body = payload
 
-    response = f"{status_line}
-                \n
-                \n
-                {body}"
+    response = f"{status_line}\n\n{body}"
 
     return response
 
