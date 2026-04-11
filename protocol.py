@@ -52,8 +52,8 @@ def resolve_page(path):
     
     if full_path.is_file():
         page_contents = full_path.read_text()
-        return (True, page_contents)
+        return ("WOVEN", page_contents)
     else:
-        return (False, "Page not found")
+        return ("TANGLED", "Page not found")
 
 
