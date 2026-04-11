@@ -26,6 +26,7 @@ def handle_client(client_socket, address):
         response_text = build_response(parsed_request)
         send_response(client_socket, response_text)
         client_socket.close()
+        return
 
     page_content = resolve_page(parsed_request[1])
 
