@@ -2,37 +2,44 @@ from pathlib import Path
 
 
 def build_response(parsed_request):
-    is_valid, result = parsed_request
-    if is_valid:
+    status, result = parsed_request
+    if status == "WOVEN":
         return {
-            "status": "OK",
-            "body": result
-        }
-    else:
+                "status": status,
+                "body": result
+                }
+
+    if status == "MISWOVEN":
         return {
-            "status": "FAILED",
-            "body": result
-        }
+                "status": status,
+                "body": result
+                }
+
+    if status == "TANGLED":
+        return {
+                "status": status,
+                "body": result
+                }
 
 
 def parse_request(request_text):
     stripped = request_text.strip()
     if not stripped:
-        return (False, "Incorrect request format")
+        return ("MISWOVEN", "Incorrect request format")
 
     parts = stripped.split()
     
     if len(parts) != 2:
         print(f"{stripped} - Invalid protocol: rejected")
-        return (False, "Invalid request format")
+        return ("MISWOVEN", "Invalid request format")
 
     if parts[0] != "WEAVE/1":
-        return (False, "Unsupported version")
+        return ("TANGLED", "Unsupported version")
 
     if not parts[1].startswith("/"):
-        return (False, "Invalid path")
+        return ("MISWOVEN", "Invalid path")
 
-    return (True, parts[1])
+    return ("WOVEN", parts[1])
 
 
 def resolve_page(path):

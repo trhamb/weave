@@ -17,10 +17,14 @@ def run_server(host, port):
 def handle_client(client_socket, address):
     print(f"Connected to {address}")
 
+    response = ""
+
     request_text = read_request(client_socket)
     print(f"Debugging print: {request_text}")
     parsed_request = parse_request(request_text)
-    
+
+    # check here for parsed text validity
+
     response_text = build_response(parsed_request)
     send_response(client_socket, response_text)
     client_socket.close()
@@ -33,6 +37,6 @@ def read_request(client_socket):
 
 
 def send_response(client_socket, response_text):
-    response = response_text["body"].encode("utf-8")
+    response = response_textencode("utf-8")
     client_socket.sendall(response)
 
