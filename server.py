@@ -24,6 +24,10 @@ def handle_client(client_socket, address):
     parsed_request = parse_request(request_text)
 
     # check here for parsed text validity
+    if parsed_request[0] != "SPUN":
+        response_text = build_response(parsed_request)
+        send_response(client_socket, response_text)
+        client_socket.close()
 
     response_text = build_response(parsed_request)
     send_response(client_socket, response_text)
@@ -37,6 +41,6 @@ def read_request(client_socket):
 
 
 def send_response(client_socket, response_text):
-    response = response_textencode("utf-8")
+    response = response_text.encode("utf-8")
     client_socket.sendall(response)
 
