@@ -31,8 +31,7 @@ def parse_request(request_text):
 
     parts = stripped.split()
     
-    if len(parts) != 2:
-        print(f"{stripped} - Invalid protocol: rejected")
+    if len(parts) != 2: 
         return ("MISWOVEN", "Invalid request format")
 
     if parts[0] != "WEAVE/1":
