@@ -41,7 +41,7 @@ def parse_request(request_text):
     if not parts[1].startswith("/"):
         return ("MISWOVEN", "Invalid path")
 
-    return ("WOVEN", parts[1])
+    return ("SPUN", parts[1])
 
 
 def resolve_page(path):
