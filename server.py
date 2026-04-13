@@ -18,7 +18,7 @@ def handle_client(client_socket, address):
     print(f"Connected to {address}")
 
     request_text = read_request(client_socket)
-    print(f"Debugging print: {request_text}")
+    print(f"Requested: {request_text}")
     parsed_request = parse_request(request_text)
 
     # check here for parsed text validity
