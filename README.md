@@ -59,9 +59,9 @@ Weave uses simple, thematic status codes:
 Requested paths are mapped to text files in the `content/` directory.
 
 For example:
-
+```
 /about  →  content/about.txt
-
+```
 If the file exists, its contents are returned.  
 If not, an error response is sent.
 
@@ -70,21 +70,21 @@ If not, an error response is sent.
 ## Running the server
 
 Run the server with:
-
+```
 python main.py
-
+```
 The server will start on:
-
+```
 127.0.0.1:7777
-
+```
 ---
 
 ## Testing with netcat
 
 You can connect to and test the server using `nc`:
-
+```
 echo "WEAVE/1 /about" | nc 127.0.0.1 7777
-
+```
 ---
 
 ## Project goals
